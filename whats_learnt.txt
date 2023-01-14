@@ -1,0 +1,2 @@
+ssh-keygen -t rsa -C "pg.ds97@gmail.com"
+
