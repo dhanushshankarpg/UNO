@@ -1,2 +1,4 @@
 ssh-keygen -t rsa -C "pg.ds97@gmail.com"
 
+ cmake -S{} -B {} -G "MinGW Makefiles" // cmake command for windows
+ MinGW32-make instead of make
