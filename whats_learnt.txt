@@ -1,4 +1,4 @@
-ssh-keygen -t rsa -C "pg.ds97@gmail.com"
+ssh-keygen -t rsa -C ""
 
  cmake -S{} -B {} -G "MinGW Makefiles" // cmake command for windows
- MinGW32-make instead of make
+ MinGW32-make instead of make, but i renamed it from MinGW32-make to make at C:\MinGW\bin and it seems to work fine 
