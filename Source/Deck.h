@@ -6,7 +6,10 @@
 
 #include <iostream>
 #include <string>
+#include <algorithm>
 #include <vector>
+#include <list>
+
 #include <map>
 
 enum Color
@@ -33,8 +36,8 @@ enum Rank
 struct Card{
     Rank rank;
     Color color;
-    int maxRank = 4;
-    int maxColor = 9;
+    int maxRank = 9;
+    int maxColor = 4;
 };
 
 class Deck
@@ -46,12 +49,13 @@ private:
     std::vector<Card> overallDeck;
 
 public:
+    Deck();
     void getPlayerCount();
     void getCardCount();
     void initializeDeck();
     void displayDeck();
     void displayCard(Card &);
     void shuffleDeck();
-    void createCardSetForPlayers();
-
+    void dealCards();
+    void checkEmptyDeck(std::vector<Card> &);
 };

@@ -1,6 +1,11 @@
 
 #include "Deck.h"
 
+Deck::Deck(){
+    getPlayerCount();
+    getCardCount();
+}
+
 void Deck::getPlayerCount()
 {
     std::cout << "Enter number of Players" << std::endl;
@@ -13,36 +18,59 @@ void Deck::getCardCount()
     std::cin >> cardCount;
 }
 
+void Deck::checkEmptyDeck(std::vector<Card> &d)
+{
+    if (d.empty())
+    {
+        std::cout << "Deck not initialized, YET!!";
+        return;
+    }
+}
+
 void Deck::initializeDeck()
 {
     Card card;
-    for (int count = 0; count < max_deck_size; count++){
 
-        for (int i = 0; i < card.maxColor; i++)
+    for (int i = 0; i < card.maxColor; i++)
+    {
+        for (int j = 0; j < card.maxRank; j++)
         {
-            for (int j = 0; j < card.maxRank; j++)
-            {
-                card.color = Color(i);
-                card.rank = Rank(j);
-                std::cout << Color(card.color) << " " << card.rank << std::endl;
-                overallDeck.push_back(card);
-            }
+            card.color = Color(i);
+            card.rank = Rank(j);
+            overallDeck.push_back(card);
         }
-    }    
+    }
 }
 
 void Deck::displayDeck()
 {
-    if(overallDeck.empty()){
-        std::cout << "Deck not initialized, YET!!";
-    }
-
-    for (auto i: overallDeck){
+    checkEmptyDeck(overallDeck);
+    for (auto i : overallDeck)
+    {
         displayCard(i);
     }
-
 }
 
-void Deck::displayCard(Card& i){
-    std::cout << i.color << " dfdf  " << i.rank << std::endl;
+void Deck::displayCard(Card &i)
+{
+    std::cout << "Color: " << i.color << "    "
+              << "Rank: " << i.rank << std::endl;
+}
+
+void Deck::shuffleDeck()
+{
+    checkEmptyDeck(overallDeck);
+    std::random_shuffle(overallDeck.begin(), overallDeck.end());
+}
+
+void Deck::dealCards()
+{
+    std::vector<std::vector<Card>> dealtStack;
+    for (int i = 0; i < playerCount; i++){
+        for (int j = 0; j < cardCount; j++){
+            dealtStack[i].push_back(overallDeck[j]); // Adds 7 random cards to the player1
+            overallDeck.erase(overallDeck[j]);
+        }
+    }
+
 }
