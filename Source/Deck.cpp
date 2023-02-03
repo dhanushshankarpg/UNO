@@ -1,10 +1,13 @@
 
 #include "Deck.h"
 
-Deck::Deck(){
+Deck::Deck()
+{
     getPlayerCount();
     getCardCount();
 }
+
+int Deck::count = 0;
 
 void Deck::getPlayerCount()
 {
@@ -42,35 +45,47 @@ void Deck::initializeDeck()
     }
 }
 
-void Deck::displayDeck()
+void Deck::displayDeck(std::vector<Card> &deckofCards)
 {
-    checkEmptyDeck(overallDeck);
-    for (auto i : overallDeck)
+    checkEmptyDeck(deckofCards);
+    for (auto i : deckofCards)
     {
         displayCard(i);
     }
+    std::cout << "------------------" << std::endl;
 }
 
 void Deck::displayCard(Card &i)
 {
+    // int count = 0;
+    std::cout << count << " ";
     std::cout << "Color: " << i.color << "    "
               << "Rank: " << i.rank << std::endl;
+    count++;
 }
 
-void Deck::shuffleDeck()
+void Deck::shuffleDeck(std::vector<Card> &deckofCards)
 {
     checkEmptyDeck(overallDeck);
     std::random_shuffle(overallDeck.begin(), overallDeck.end());
 }
 
-void Deck::dealCards()
+void Deck::dealCards(std::vector<Card> &deckofCards)
 {
-    std::vector<std::vector<Card>> dealtStack;
-    for (int i = 0; i < playerCount; i++){
-        for (int j = 0; j < cardCount; j++){
-            dealtStack[i].push_back(overallDeck[j]); // Adds 7 random cards to the player1
-            overallDeck.erase(overallDeck[j]);
+    std::vector<std::vector<Card>> dealtStack; // Dealt cards in hand are mini version of decks?
+    std::vector<Card> hand;
+    for (int i = 0; i < playerCount; i++)
+    {
+        for (int j = 0; j < cardCount; j++)
+        {
+            hand.push_back(deckofCards[0]);
+            deckofCards.erase(deckofCards.begin());
         }
+        dealtStack.push_back(hand);
+        hand.clear();
     }
-
+    
+    for(auto i: dealtStack){
+        displayDeck(i);
+    }
 }

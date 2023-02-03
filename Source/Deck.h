@@ -7,9 +7,9 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include <typeinfo>
 #include <vector>
 #include <list>
-
 #include <map>
 
 enum Color
@@ -46,16 +46,17 @@ private:
     int playerCount;
     int cardCount;
     const int max_deck_size = 36; // w/o special cards
-    std::vector<Card> overallDeck;
 
 public:
     Deck();
+    static int count ;
+    std::vector<Card> overallDeck;
     void getPlayerCount();
     void getCardCount();
     void initializeDeck();
-    void displayDeck();
+    void displayDeck(std::vector<Card> &);
     void displayCard(Card &);
-    void shuffleDeck();
-    void dealCards();
+    void shuffleDeck(std::vector<Card> &);
+    void dealCards(std::vector<Card> &);
     void checkEmptyDeck(std::vector<Card> &);
 };
