@@ -1,8 +1,4 @@
 
-// #ifndef DECK_H
-// #define DECK_H
-
-// #endif
 
 #include <iostream>
 #include <string>
@@ -51,6 +47,7 @@ public:
     Deck();
     static int count ;
     std::vector<Card> overallDeck;
+    std::vector<std::vector<Card>> dealtStack;
     void getPlayerCount();
     void getCardCount();
     void initializeDeck();

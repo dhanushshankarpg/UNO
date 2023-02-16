@@ -1,9 +1,8 @@
 #include <iostream>
-#include <string>
-#include <algorithm>
-#include <vector>
-#include <map>
+#include "Deck.h"
 
-/*
-    
-*/
+class Uno : public Deck{
+
+    public:
+        void Intro();
+};

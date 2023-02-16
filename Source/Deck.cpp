@@ -57,7 +57,6 @@ void Deck::displayDeck(std::vector<Card> &deckofCards)
 
 void Deck::displayCard(Card &i)
 {
-    // int count = 0;
     std::cout << count << " ";
     std::cout << "Color: " << i.color << "    "
               << "Rank: " << i.rank << std::endl;
@@ -72,7 +71,6 @@ void Deck::shuffleDeck(std::vector<Card> &deckofCards)
 
 void Deck::dealCards(std::vector<Card> &deckofCards)
 {
-    std::vector<std::vector<Card>> dealtStack; // Dealt cards in hand are mini version of decks?
     std::vector<Card> hand;
     for (int i = 0; i < playerCount; i++)
     {
@@ -83,9 +81,5 @@ void Deck::dealCards(std::vector<Card> &deckofCards)
         }
         dealtStack.push_back(hand);
         hand.clear();
-    }
-    
-    for(auto i: dealtStack){
-        displayDeck(i);
     }
 }
