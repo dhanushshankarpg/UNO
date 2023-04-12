@@ -1,10 +1,8 @@
-
 #include "../header/Deck.h"
 
 Deck::Deck()
 {
-    getPlayerCount();
-    getCardCount();
+    std::cout << "Constructor Deck" << std::endl;
 }
 
 int Deck::count = 0;
@@ -74,6 +72,9 @@ void Deck::shuffleDeck(std::vector<Card> &deckofCards)
 
 void Deck::dealCards(std::vector<Card> &deckofCards)
 {
+
+    getPlayerCount();
+    getCardCount();
     std::vector<Card> hand;
     for (int i = 0; i < playerCount; i++)
     {
@@ -95,4 +96,7 @@ void Deck::displayDeltStacks(std::vector<std::vector<Card>> &dealtStack)
             displayDeck(dealtStack[i]);
         }
     }
+}
+void Deck::testme(){
+    std::cout << "Test Function Called: Class DECK\n Fucking learn me soon!!!" << std::endl;
 }

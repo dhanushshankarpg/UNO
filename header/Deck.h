@@ -1,12 +1,10 @@
-
-
+#pragma once
 #include <iostream>
 #include<algorithm>
 #include <string>
 #include <vector>
 #include <list>
 #include <map>
-// #include"Deck.cpp"
 
 enum Color
 {
@@ -59,5 +57,6 @@ public:
     template <typename T>
     bool checkEmptyDeck(std::vector<T> );
     void displayDeltStacks(std::vector<std::vector<Card>> &);
+    void testme();
 };
 
