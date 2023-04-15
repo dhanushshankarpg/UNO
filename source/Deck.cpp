@@ -3,8 +3,8 @@
 Deck::Deck()
 {
     std::cout << "Constructor Deck" << std::endl;
-    getPlayerCount();
-    getCardCount();
+    // getPlayerCount();
+    // getCardCount();
     initializeDeck();
     shuffleDeck(overallDeck);
     dealCards(overallDeck);
@@ -53,19 +53,21 @@ void Deck::initializeDeck()
 
 void Deck::displayDeck(std::vector<Card> &deckofCards)
 {
-    checkEmptyDeck(deckofCards);
-    for (auto i : deckofCards)
+    if(checkEmptyDeck(deckofCards))
     {
-        displayCard(i);
+        for (auto i : deckofCards)
+        {
+            displayCard(i);
+        }
+        std::cout << "------------------" << std::endl;
     }
-    std::cout << "------------------" << std::endl;
 }
 
 void Deck::displayCard(Card &i)
 {
     std::string colors[] = {"RED", "GREEN", "BLUE", "YELLOW"};
-    std::string colorCodes[] = {"\033[31m", "\033[32m", "\033[34m", "\033[33m", "\033[0m"};
-    std::string result = colorCodes[i.color] + colors[i.color] + colorCodes[4];
+    std::string asciicolorCodes[] = {"\033[31m", "\033[32m", "\033[34m", "\033[33m", "\033[0m"};
+    std::string result = asciicolorCodes[i.color] + colors[i.color] + asciicolorCodes[4];
     std::cout << "Color: " << result << "    "
               << "Rank: " << i.rank << std::endl;
 }

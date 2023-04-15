@@ -1,13 +1,16 @@
 #include "../header/deck.h"
 #include "../header/game.h"
+#include "../header/player.h"
 #include <iostream>
 
 int main(int, char **)
 {
-    Deck *deck = new Deck();
-    deck->displayDeltStacks(deck->dealtStack);
-    Game *game = new Game();
-    game->initGame();
-    delete deck;
-    delete game;
+    Player *players = new Player();
+
+    // Deck *deck = new Deck();
+    // Game *game = new Game();
+    // game->initGame();
+    // delete deck;
+    // delete game;
+    delete players;
 }

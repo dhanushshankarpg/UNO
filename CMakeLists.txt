@@ -4,7 +4,12 @@ project(UNO++ VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
-add_executable(UNO++ source/deck.cpp source/game.cpp source/main.cpp)
+add_executable(UNO++    
+                        source/player.cpp 
+                        source/deck.cpp 
+                        source/game.cpp 
+                        source/main.cpp 
+)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
