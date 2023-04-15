@@ -1,8 +1,13 @@
-#include "../header/Deck.h"
+#include "../header/deck.h"
 
 Deck::Deck()
 {
     std::cout << "Constructor Deck" << std::endl;
+    getPlayerCount();
+    getCardCount();
+    initializeDeck();
+    shuffleDeck(overallDeck);
+    dealCards(overallDeck);
 }
 
 int Deck::count = 0;
@@ -58,10 +63,11 @@ void Deck::displayDeck(std::vector<Card> &deckofCards)
 
 void Deck::displayCard(Card &i)
 {
-    std::cout << count << " ";
-    std::cout << "Color: " << i.color << "    "
+    std::string colors[] = {"RED", "GREEN", "BLUE", "YELLOW"};
+    std::string colorCodes[] = {"\033[31m", "\033[32m", "\033[34m", "\033[33m", "\033[0m"};
+    std::string result = colorCodes[i.color] + colors[i.color] + colorCodes[4];
+    std::cout << "Color: " << result << "    "
               << "Rank: " << i.rank << std::endl;
-    count++;
 }
 
 void Deck::shuffleDeck(std::vector<Card> &deckofCards)
@@ -72,9 +78,6 @@ void Deck::shuffleDeck(std::vector<Card> &deckofCards)
 
 void Deck::dealCards(std::vector<Card> &deckofCards)
 {
-
-    getPlayerCount();
-    getCardCount();
     std::vector<Card> hand;
     for (int i = 0; i < playerCount; i++)
     {

@@ -1,6 +1,6 @@
-#include"deck.h"
+// #include"deck.h"
 #include<iostream>
-class Game : public Deck {
+class Game  {
     public:
         void initGame();
 };
