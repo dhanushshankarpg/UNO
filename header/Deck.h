@@ -5,6 +5,7 @@
 #include <vector>
 #include <list>
 #include <map>
+#include "player.h"
 
 enum Color
 {
@@ -38,17 +39,15 @@ struct Card
 class Deck
 {
 private:
-    int playerCount;
-    int cardCount;
     const int max_deck_size = 36; // w/o special cards
 
 public:
     Deck();
+    Deck( Player&);
+    Player *player = nullptr;
     static int count;
     std::vector<Card> overallDeck;
     std::vector<std::vector<Card>> dealtStack;
-    void getPlayerCount();
-    void getCardCount();
     void initializeDeck();
     void displayDeck(std::vector<Card> &);
     void displayCard(Card &);

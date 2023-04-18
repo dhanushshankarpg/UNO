@@ -3,26 +3,17 @@
 Deck::Deck()
 {
     std::cout << "Constructor Deck" << std::endl;
-    // getPlayerCount();
-    // getCardCount();
-    initializeDeck();
-    shuffleDeck(overallDeck);
-    dealCards(overallDeck);
+
+}
+Deck::Deck( Player &p)
+{
+
+    this->player = &p;
+    std::cout << p.name<< std::endl;
 }
 
 int Deck::count = 0;
 
-void Deck::getPlayerCount()
-{
-    std::cout << "Enter number of Players" << std::endl;
-    std::cin >> playerCount;
-}
-
-void Deck::getCardCount()
-{
-    std::cout << "Enter number of Card" << std::endl;
-    std::cin >> cardCount;
-}
 template <typename T>
 bool Deck::checkEmptyDeck(std::vector<T> d)
 {
@@ -81,9 +72,9 @@ void Deck::shuffleDeck(std::vector<Card> &deckofCards)
 void Deck::dealCards(std::vector<Card> &deckofCards)
 {
     std::vector<Card> hand;
-    for (int i = 0; i < playerCount; i++)
+    for (int i = 0; i < this->player->playerCount ; i++)
     {
-        for (int j = 0; j < cardCount; j++)
+        for (int j = 0; j < this->player->cardCount; j++)
         {
             hand.push_back(deckofCards[0]);
             deckofCards.erase(deckofCards.begin());

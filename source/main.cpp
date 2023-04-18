@@ -6,11 +6,7 @@
 int main(int, char **)
 {
     Player *players = new Player();
-
-    // Deck *deck = new Deck();
-    // Game *game = new Game();
-    // game->initGame();
-    // delete deck;
-    // delete game;
+    Deck *deck = new Deck(*players);
+    delete deck;
     delete players;
 }

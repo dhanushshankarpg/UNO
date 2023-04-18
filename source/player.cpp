@@ -3,6 +3,8 @@
 
 Player::Player() 
 {
+    std::cout << "Player Constructor" << std::endl;
+
     getPlayerName();
     getPlayerCount();
     getCardCount();
