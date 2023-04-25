@@ -9,7 +9,8 @@ Deck::Deck( Player &p)
 {
 
     this->player = &p;
-    std::cout << p.name<< std::endl;
+    initializeDeck();
+    //std::cout << p.name<< std::endl;
 }
 
 int Deck::count = 0;
@@ -40,6 +41,8 @@ void Deck::initializeDeck()
             overallDeck.push_back(card);
         }
     }
+    shuffleDeck(overallDeck);
+    dealCards(overallDeck);
 }
 
 void Deck::displayDeck(std::vector<Card> &deckofCards)
