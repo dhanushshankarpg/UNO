@@ -10,6 +10,7 @@ class Player{
         void getPlayerCount();
         void getCardCount();
 
+    public:
         std::string name;
         int playerCount;
         int cardCount;

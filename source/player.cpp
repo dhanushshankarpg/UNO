@@ -3,8 +3,6 @@
 
 Player::Player() 
 {
-    std::cout << "Player Constructor" << std::endl;
-
     getPlayerName();
     getPlayerCount();
     getCardCount();
@@ -13,7 +11,7 @@ Player::Player()
 
 void Player::getPlayerName()
 {
-    std::cout << "Enter your name" << std::endl;
+    std::cout << "Enter Player 1 name:" << std::endl;
     std::cin >> name;
     if (std::cin.fail())
         std::cerr << "Input Failure";

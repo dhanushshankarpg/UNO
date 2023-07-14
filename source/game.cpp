@@ -1,5 +1,10 @@
 #include"../header/game.h"
-#include<iostream>
+
+
+
+Game::Game()
+{
+}
 
 void Game::initGame()
 {
@@ -8,25 +13,29 @@ void Game::initGame()
     std::cin.get();
 }
 
-Game::Game()
-{
 
-}
-
-Game::Game(Deck &d)
+Game::Game(Deck &d, Helpers &h)
 {
 
     this->m_deck = &d;
-    m_deck->displayDeltStacks(m_deck->dealtStack);
+    this->m_helper = &h;
 }
 
-void Game::setTopCard()
+
+Card Game::setTopCard()
 {
-    
+    m_topCard = m_deck->overallDeck[0];
+    m_deck->displayCard(m_topCard);
+
+    return m_topCard;
 }
 
-void Game::displayheaders()
-{   
-    
-    std::cout << "Player 1:   " << m_deck->player->name << std::endl;
+void Game::gameStart()
+{
+    int interval = 2000;
+    while(1) // make a variable to find the winner
+    {
+        //m_helper->clearScreen();
+        setTopCard();
+    }
 }

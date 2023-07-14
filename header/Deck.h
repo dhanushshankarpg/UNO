@@ -38,8 +38,9 @@ struct Card
 
 class Deck
 {
-private:
+public:
     const int max_deck_size = 36; // w/o special cards
+    
 
 public:
     Deck();
