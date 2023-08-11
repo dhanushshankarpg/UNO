@@ -39,23 +39,26 @@ struct Card
 class Deck
 {
 public:
-    const int max_deck_size = 36; // w/o special cards
-    
-
+    const int max_deck_size = 36;// w/o special cards
+    static int count;
+    Player *player = nullptr;
+    Card initialTopcard;
+    std::vector<Card> overallDeck;
+    std::vector<Card> remainderDeck;
+    std::vector<std::vector<Card>> dealtStack; 
 public:
     Deck();
     Deck( Player&);
-    Player *player = nullptr;
-    static int count;
-    std::vector<Card> overallDeck;
-    std::vector<std::vector<Card>> dealtStack;
+
     void initializeDeck();
     void displayDeck(std::vector<Card> &);
     void displayCard(Card &);
     void shuffleDeck(std::vector<Card> &);
     void dealCards(std::vector<Card> &);
+    void setInitialTopCard();
     template <typename T>
     bool checkEmptyDeck(std::vector<T> );
+
     void displayDeltStacks(std::vector<std::vector<Card>> &);
     void testme();
 };

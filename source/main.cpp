@@ -8,12 +8,17 @@ using namespace std;
 int main(int, char **)
 {
     
+    //Init
     Player *players = new Player();
     Helpers *helper = new Helpers();
     Deck *deck = new Deck(*players);
     Game *game = new Game(*deck, *helper);
-    game->initGame();
-    game->gameStart(); 
+
+    //bootstraps
+    //game->initGame();
+    game->gameStart();
+
+    //Clean Up 
     delete game;
     delete deck;
     delete players;

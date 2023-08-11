@@ -97,8 +97,13 @@ void Deck::displayDeltStacks(std::vector<std::vector<Card>> &dealtStack)
     }
 }
 
+void Deck::setInitialTopCard()
+{
 
+    Card initialTopcard = overallDeck[0];
+}
 
-void Deck::testme(){
+void Deck::testme()
+{
     std::cout << "Test Function Called: Class DECK\n Fucking learn me soon!!!" << std::endl;
 }

@@ -19,5 +19,6 @@ class Game  {
         Game(Deck &, Helpers &);
         void initGame();
         void gameStart();
-        Card setTopCard();
+        void gameDisplay(); // 
+        Card setSubsequentTopCard();
 };
