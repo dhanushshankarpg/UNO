@@ -1,7 +1,5 @@
 #include"../header/game.h"
 
-
-
 Game::Game()
 {
 }

@@ -7,6 +7,9 @@ enable_testing()
 # Set the C++ standard
 set(CMAKE_CXX_STANDARD 11)
 
+# Generate compile_commands.json for cppcheck
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 # Find the threading library
 find_package(Threads REQUIRED)
 
@@ -19,3 +22,14 @@ target_link_libraries(UNO++ PRIVATE Threads::Threads)
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)
+
+find_program(CPPCHECK cppcheck)  # Find the cppcheck executable
+
+if(CPPCHECK)
+    add_custom_target(cppcheck
+        COMMAND ${CPPCHECK} 
+        COMMENT "Running cppcheck"
+    )
+else()
+    message(WARNING "cppcheck not found. Custom target cppcheck won't be available.")
+endif()
