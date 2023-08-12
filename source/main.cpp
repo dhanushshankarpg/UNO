@@ -22,4 +22,4 @@ int main(int, char **)
     delete game;
     delete deck;
     delete players;
- }
+}

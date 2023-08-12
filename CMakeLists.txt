@@ -14,6 +14,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 find_package(Threads REQUIRED)
 
 file(GLOB SOURCES "source/*.cpp")
+file(GLOB HEADERS "header/*.h")
 
 add_executable(UNO++ ${SOURCES})
 target_link_libraries(UNO++ PRIVATE Threads::Threads)
@@ -27,7 +28,12 @@ find_program(CPPCHECK cppcheck)  # Find the cppcheck executable
 
 if(CPPCHECK)
     add_custom_target(cppcheck
-        COMMAND ${CPPCHECK} 
+        COMMAND ${CPPCHECK} --std=c++11 
+                            --language=c++
+                            # --verbose
+                            --enable=warning,style,performance,portability
+                            ${SOURCES} ${HEADERS}
+
         COMMENT "Running cppcheck"
     )
 else()

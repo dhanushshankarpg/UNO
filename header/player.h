@@ -2,7 +2,7 @@
 #include<iostream>
 #include<string>
 
-class Player{
+class Player {
     public:
         Player();
         Player(Player const &) = delete;
