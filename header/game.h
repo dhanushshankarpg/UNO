@@ -3,22 +3,29 @@
 #include<vector>
 #include <thread>
 #include <chrono>
-using namespace std;
+#include <stdexcept>
 
 #include "deck.h"
 #include "helpers.h"
 
-class Game  {
+using namespace std;
+
+class Game : public Helpers {
     public:
+        bool m_shouldBreak = false;
         Deck *m_deck = nullptr;
-        Helpers *m_helper = nullptr;
-        Card m_topCard;
 
     public:
         Game();
-        Game(Deck &, Helpers &);
+        Game(Deck &);
+        // bool isGameWon = false;
         void initGame();
         void gameStart();
-        void gameDisplay(); // 
-        Card setSubsequentTopCard();
+        void gameDisplay(); //
+        void setSubsequentTopCard(Card &);
+        void staticDisplay();
+        void pickCardPlayer();
+        void initdropCardPlayer();
+        void dropCardPlayer(int index);
+        void reInstantiateOverallDeck();
 };

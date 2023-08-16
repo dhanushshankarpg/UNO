@@ -1,10 +1,11 @@
 #pragma once
 #include <iostream>
-#include<algorithm>
+#include <algorithm>
 #include <string>
 #include <vector>
 #include <list>
 #include <map>
+#include <stack>
 #include "player.h"
 
 enum Color
@@ -39,27 +40,25 @@ struct Card
 class Deck
 {
 public:
-    const int max_deck_size = 36;// w/o special cards
+    const int max_deck_size = 36; // w/o special cards
     static int count;
     Player *player = nullptr;
-    Card initialTopcard;
-    std::vector<Card> overallDeck;
-    std::vector<Card> remainderDeck;
-    std::vector<std::vector<Card>> dealtStack; 
+    Card m_topCard;
+    std::vector<Card> overallDeck; // The Card Deck available after shuffling,
+                                   // Ready to distribute
+    std::stack<Card> dropDeck; //  It is a LAST in FIRST out entity, hench using std::stack
+    std::vector<std::vector<Card>> dealtStack; // The Cards that are in players hand  #todo: this is floating i.e. Changes when games begins
 public:
     Deck();
-    Deck( Player&);
-
+    Deck(Player &);
     void initializeDeck();
     void displayDeck(std::vector<Card> &);
-    void displayCard(Card &);
+    void displayCard(const Card &);
     void shuffleDeck(std::vector<Card> &);
     void dealCards(std::vector<Card> &);
     void setInitialTopCard();
     template <typename T>
-    bool checkEmptyDeck(std::vector<T> );
-
+    bool isEmpty(std::vector<T>);
     void displayDeltStacks(std::vector<std::vector<Card>> &);
     void testme();
 };
-

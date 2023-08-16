@@ -10,9 +10,9 @@ int main(int, char **)
     
     //Init
     Player *players = new Player();
-    Helpers *helper = new Helpers();
+    // Helpers *helper = new Helpers();
     Deck *deck = new Deck(*players);
-    Game *game = new Game(*deck, *helper);
+    Game *game = new Game(*deck);
 
     //bootstraps
     //game->initGame();

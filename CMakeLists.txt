@@ -8,7 +8,7 @@ enable_testing()
 set(CMAKE_CXX_STANDARD 11)
 
 # Generate compile_commands.json for cppcheck
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+# set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Find the threading library
 find_package(Threads REQUIRED)
@@ -16,8 +16,10 @@ find_package(Threads REQUIRED)
 file(GLOB SOURCES "source/*.cpp")
 file(GLOB HEADERS "header/*.h")
 
+# add_compile_options()
+
 add_executable(UNO++ ${SOURCES})
-target_link_libraries(UNO++ PRIVATE Threads::Threads)
+# target_link_libraries(UNO++ PRIVATE Threads::Threads)
 
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
@@ -30,8 +32,8 @@ if(CPPCHECK)
     add_custom_target(cppcheck
         COMMAND ${CPPCHECK} --std=c++11 
                             --language=c++
-                            # --verbose
-                            --enable=warning,style,performance,portability
+                             --verbose
+                            # --enable=warning,style,performance,portability
                             ${SOURCES} ${HEADERS}
 
         COMMENT "Running cppcheck"

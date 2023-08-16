@@ -12,73 +12,118 @@ void Game::initGame()
 }
 
 
-Game::Game(Deck &d, Helpers &h)
+Game::Game(Deck &d)
 {
 
     this->m_deck = &d;
-    this->m_helper = &h;
 }
 
 
-Card Game::setSubsequentTopCard()
+void Game::setSubsequentTopCard(Card &card)
 {
-    //std::cout << sizeof(m_deck->initialTopcard) << std::endl;
-   // if(sizeof(m_deck->initialTopcard == 0)){
-        m_topCard = m_deck->overallDeck[0]; // This should not be OVERALLdeck it must be REMAINDERdeck
-        return m_topCard;
-    //}
-    
+    m_deck->dropDeck.push(card);
+    m_deck->m_topCard = m_deck->dropDeck.top();
 }
 
 void Game::gameStart()
 {
-    //int interval = 2000;
-    while(1) // make a variable to find the winner
+    while(!m_shouldBreak) 
     {
-        //m_helper->clearScreen();
-        setSubsequentTopCard();
         gameDisplay();
-        //m_helper->clearScreen();
     }
 }
 
-void Game::gameDisplay(){
-    /*Show Top Card
-    //Display Player hand
-    //Perform Player Actions -> Get Action Request 
-                                        -> Drop Card = Add Card to RemaindeDeck
-                                        -> Pick Card = Pop OverallDeck
-
-                                        */
-    int playerAction;
-    std::cout << "\n\n"
-              << std::endl;
+void Game::staticDisplay(){
     std::cout << "TOP CARD:\t" << std::endl;
-    m_deck->displayCard(m_topCard);
-    std::cout << "Your CARDS:\t" << std::endl;
-    m_deck->displayDeck(m_deck->dealtStack[0]);
-    std::cout << "Enter Actions:\t 1. Drop Card \t 2. Pick Card" << std::endl;
-    std::cin >> playerAction;
+    m_deck->displayCard(m_deck->dropDeck.top());
+    if (!m_deck->isEmpty(m_deck->dealtStack[0]))
+    {
+        std::cout << "Your CARDS:\t" << std::endl;
+        m_deck->displayDeck(m_deck->dealtStack[0]);
+        std::cout << "\"d/D\"->\t Drop\t\t\"p/P\"->\tPick" << std::endl;
+    }
+    else
+    {
+        //std::cout << "YOU WON" << std::endl;
+        std::cout << "No Cards in Hand" << std::endl;
+    }
+}
+
+
+void Game::gameDisplay()
+{
+    if (m_deck->overallDeck.size())
+    {
+        char playerAction;
+        // clearScreen();
+        staticDisplay();
+
+        std::cin >> playerAction;
+        if (std::cin.fail())
+            std::cerr << "Input Failure";
+        switch (playerAction)
+        {
+        case 'd':
+        case 'D':
+            initdropCardPlayer();
+            break;
+
+        case 'p':
+        case 'P':
+            pickCardPlayer();
+            break;
+
+        default:
+            std::cout << "Invalid Option" << std::endl;
+            break;
+        }
+    }
+    else{
+        std::cout << "The Play Deck is Empty";
+        m_shouldBreak = true;
+    }
+
+}
+
+void Game::initdropCardPlayer()
+{
+    int index;
+    std::cout << "Enter drop Card Index" << std::endl;
+    std::cin >> index;
     if (std::cin.fail())
         std::cerr << "Input Failure";
-    switch (playerAction)
+    this->dropCardPlayer(index);
+}
+
+void Game::dropCardPlayer(int index)
+{
+    try
     {
-    case 1:
-        /* code */
-        std::cout << "Card Droped" << std::endl;
-        // Call Drop Action
-        break;
-
-    case 2:
-        /* code */
-        // Call Pick Action
-        std::cout << "Card Picked" << std::endl;
-
-        break;
-
-    default:
-        std::cout << "Invalid Option" << std::endl;
-        break;
+        if (index <= ((m_deck->dealtStack[0].size()) - 1))
+        {
+            std::cout << "Dropping Card..." << std::endl;
+            setSubsequentTopCard(m_deck->dealtStack[0][index]);
+            m_deck->dealtStack[0].erase(m_deck->dealtStack[0].begin() + index);
+        }
+        else
+        {
+            throw std::runtime_error("Invalid Index !!! Perform card Drop Again\n\n");
+        }
     }
-}   
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+        initdropCardPlayer();
+    }
+}
 
+void Game::pickCardPlayer()
+{
+    std::cout << "Picking Card..." << std::endl;
+    m_deck->dealtStack[0].push_back(m_deck->overallDeck.back());
+    if ((m_deck->dropDeck.top().color == m_deck->dealtStack[0].back().color) || (m_deck->dropDeck.top().rank == m_deck->dealtStack[0].back().rank))
+    {
+        dropCardPlayer((m_deck->dealtStack[0].size()) - 1);
+    }
+    m_deck->overallDeck.erase(m_deck->overallDeck.end());
+}
