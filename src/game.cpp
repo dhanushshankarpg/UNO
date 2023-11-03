@@ -3,7 +3,6 @@
 Game::Game()
 {
     m_isGameOver = false;
-    m_isCycleReversed = false;
     m_deck.initializeDeck();
     m_deck.dealCards(m_deck.m_overallDeck);
     for(unsigned i(0); i < Helpers::s_totalPlayerCount; i++)
@@ -15,13 +14,13 @@ void Game::initGame()
     while(!m_isGameOver)
     {
         startGame();
+        m_gameOps.setGameCycle(m_deck);
     }
 }
 
 void Game::startGame()
 {
-    GameOperations gameOps;
-    if (gameOps.getCurrentPlayer() == 0)
+    if (m_gameOps.getCurrentPlayer() == 0)
     {
         staticDisplayForHumanPlayer();
 
@@ -33,12 +32,12 @@ void Game::startGame()
         {
             case 'd':
             case 'D':
-                gameOps.dropCardHuman(m_players, m_deck);
+                m_gameOps.dropCardHuman(m_players, m_deck);
                 break;
 
             case 'p':
             case 'P':
-                gameOps.pickCardHuman(m_players, m_deck);
+                m_gameOps.pickCardHuman(m_players, m_deck);
                 break;
 
             default:
@@ -55,17 +54,15 @@ void Game::startGame()
 
 void Game::staticDisplayForHumanPlayer()
 {
-    Helpers::clearScreen();
-    CardOperation cardOps;
-    cardOps.displayTopCard(m_deck.m_dropDeck.top());
-    cardOps.displayDeck(m_players.at(0).m_playerHandCards);
+    //Helpers::clearScreen();
+    m_cardOps.displayTopCard(m_deck.m_dropDeck.top());
+    m_cardOps.displayDeck(m_players.at(m_gameOps.getCurrentPlayer()).m_playerHandCards);
     std::cout << "\"d/D\"->\t Drop\t\t\"p/P\"->\tPick" << std::endl;
 }
 
 void Game::staticDisplayForCPUPlayer()
 {
-    GameOperations gameOps;
-    std::cout<<m_players.at(gameOps.getCurrentPlayer()).m_playerName<<"'s Turn"<<std::endl;
-    gameOps.AIplay(m_deck);
+    std::cout << m_players.at(m_gameOps.getCurrentPlayer()).m_playerName << "'s Turn" << std::endl;
+    m_gameOps.AIplay(m_deck);
 }
 

@@ -49,14 +49,16 @@ void CardOperation::displayDeck(const std::vector<Card> & deck)
 void CardOperation::displayCard(const Card & card)
 {
     std::string colors[] = {"","RED", "GREEN", "BLUE", "YELLOW"};
+    std::string rank[] = {    "","ONE","TWO","THREE","FOUR","FIVE","SIX","SEVEN","EIGHT","NINE","REVERSE","SKIP", "DRAW2",};
     std::cout << "Color: " << colors[card.color] << "\t"
-              << "Rank: " << card.rank<< std::endl;
+              << "Rank: " << rank[card.rank]<< std::endl;
 }
 
 void CardOperation::displayTopCard(const Card & card)
 {
-    std::string colors[] = {"","RED", "GREEN", "BLUE", "YELLOW"};
     std::cout << "TOP CARD::";
+    std::string colors[] = {"","RED", "GREEN", "BLUE", "YELLOW"};
+    std::string rank[] = {    "","ONE","TWO","THREE","FOUR","FIVE","SIX","SEVEN","EIGHT","NINE","REVERSE","SKIP", "DRAW2",};
     std::cout << "Color: " << colors[card.color] << "\t"
-              << "Rank: " << card.rank<< std::endl;
+              << "Rank: " << rank[card.rank]<< std::endl;
 }
