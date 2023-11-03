@@ -27,6 +27,6 @@ void Helpers::introGame()
     clearScreen();
     std::cout<<"...Welcome to UNO++..."<<std::endl;
     std::cout<<"Deck is initialized, Shuffled and Dealt..."<<std::endl;
-    std::this_thread::sleep_for(std::chrono::seconds(5));
+    std::this_thread::sleep_for(std::chrono::seconds(1));
     clearScreen();
 }

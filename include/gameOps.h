@@ -4,18 +4,22 @@
 #include <stack>
 #include <vector>
 
-#include "../src/utils/UNOStructs.h"
 #include "Deck.h"
 #include "player.h"
+#include "../src/utils/UNOStructs.h"
 
 class GameOperations
 {
 public:
+    static bool s_isCycleReversed;
+    static int s_currentPlayerIndex;
+
+public:
+    GameOperations();
+    int getCurrentPlayer();
     void pickCardHuman(std::vector<Player>&, Deck&);
     void dropCardHuman(std::vector<Player>&, Deck&);
     void AIplay(Deck &);
-    void setGameCycle();
-    int getCurrentPlayer();
-public:
-    static int m_currentPlayerIndex;
+    void setGameCycle(Deck &);
+    void clamPlayerIndex();
 };

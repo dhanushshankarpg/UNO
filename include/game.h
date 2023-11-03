@@ -21,8 +21,10 @@ class Game {
         void staticDisplayForCPUPlayer();
 
     public:
-        bool m_isCycleReversed;
         bool m_isGameOver;
         Deck m_deck;
+        GameOperations m_gameOps;
+        CardOperation m_cardOps;
         std::vector<Player> m_players;
 };
+
