@@ -3,6 +3,7 @@
 #include <iostream>
 #include <stack>
 #include <vector>
+#include <algorithm>
 
 #include "Deck.h"
 #include "player.h"
@@ -17,9 +18,11 @@ public:
 public:
     GameOperations();
     int getCurrentPlayer();
-    void pickCardHuman(std::vector<Player>&, Deck&);
-    void dropCardHuman(std::vector<Player>&, Deck&);
-    void AIplay(Deck &);
+    void pickCardHumanOrCPU(Player&, Deck&);
+    void dropCardHuman(Player&, Deck&);
+    void dropCardCPU(Card&, Deck&);
+    void AIplay(Player&, Deck &);
     void setGameCycle(Deck &);
-    void clamPlayerIndex();
+    void clampPlayerIndex();
+    Card * checkEquivalentCard(Player&, Deck&);
 };

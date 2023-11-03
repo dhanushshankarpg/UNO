@@ -32,12 +32,12 @@ void Game::startGame()
         {
             case 'd':
             case 'D':
-                m_gameOps.dropCardHuman(m_players, m_deck);
+                m_gameOps.dropCardHuman(m_players.at(0), m_deck);
                 break;
 
             case 'p':
             case 'P':
-                m_gameOps.pickCardHuman(m_players, m_deck);
+                m_gameOps.pickCardHumanOrCPU(m_players.at(0), m_deck);
                 break;
 
             default:
@@ -63,6 +63,6 @@ void Game::staticDisplayForHumanPlayer()
 void Game::staticDisplayForCPUPlayer()
 {
     std::cout << m_players.at(m_gameOps.getCurrentPlayer()).m_playerName << "'s Turn" << std::endl;
-    m_gameOps.AIplay(m_deck);
+    m_gameOps.AIplay(m_players.at(m_gameOps.getCurrentPlayer()), m_deck);
 }
 
