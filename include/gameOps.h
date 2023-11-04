@@ -25,5 +25,4 @@ public:
     void AIplay(Player&, Deck &);
     void setGameCycle(Deck &);
     void clampPlayerIndex();
-//    Card * checkEquivalentCard(Player&, Deck&);
 };

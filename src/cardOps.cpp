@@ -34,7 +34,6 @@ void CardOperation::displayDealtStacks(const std::vector<std::vector<Card>> &dea
 
 void CardOperation::displayDeck(const std::vector<Card> & deck)
 {
-    std::cout<<"Your Hand::"<<std::endl;
     if (!isEmpty(deck))
     {
         int cardIndex = 0;

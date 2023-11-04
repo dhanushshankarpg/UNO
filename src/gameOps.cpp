@@ -16,7 +16,7 @@ void GameOperations::pickCardHumanOrCPU(Player& currentPlayer, Deck& deck)
     if(checkEquivalentCard(currentPlayer.m_playerHandCards.back(), deck.m_dropDeck))
     {
         dropCardCPU(currentPlayer, currentPlayer.m_playerHandCards.back(),deck);
-        std::cout<<"Reason: Equivalent Card"<<std::endl;
+        std::cout<<"Reason: Equivalent Card Rank/Color"<<std::endl;
     }
 }
 
@@ -52,7 +52,6 @@ void GameOperations::AIplay(Player& currentPlayer, Deck& deck)
     {
         dropCardCPU(currentPlayer,*card,deck);
     }
-    std::this_thread::sleep_for(std::chrono::seconds(1));
 }
 
 void GameOperations::clampPlayerIndex()

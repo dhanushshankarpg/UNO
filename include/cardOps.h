@@ -17,7 +17,7 @@ public:
     void displayDeck(const std::vector<Card> &);
     void displayDealtStacks(const std::vector<std::vector<Card>> &);
     bool checkEquivalentCard(Card&, std::stack<Card>&);
-    Card *checkEquivalentCardInADeck(Player &currentPlayer, Deck &deck);
+    Card* checkEquivalentCardInADeck(Player &currentPlayer, Deck &deck);
 
     template <typename T>
     static bool isEmpty(std::vector<T>);
