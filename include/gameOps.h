@@ -7,9 +7,10 @@
 
 #include "Deck.h"
 #include "player.h"
+#include "cardOps.h"
 #include "../src/utils/UNOStructs.h"
 
-class GameOperations
+class GameOperations : public CardOperation
 {
 public:
     static bool s_isCycleReversed;
@@ -24,5 +25,5 @@ public:
     void AIplay(Player&, Deck &);
     void setGameCycle(Deck &);
     void clampPlayerIndex();
-    Card * checkEquivalentCard(Player&, Deck&);
+//    Card * checkEquivalentCard(Player&, Deck&);
 };

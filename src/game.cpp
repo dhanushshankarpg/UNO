@@ -66,8 +66,9 @@ void Game::staticDisplayForHumanPlayer()
 void Game::staticDisplayForCPUPlayer()
 {
     std::cout<<"\n";
-    m_cardOps.displayTopCard(m_deck.m_dropDeck.top());
     std::cout << m_players.at(m_gameOps.getCurrentPlayer()).m_playerName << "'s Turn" << std::endl;
+    m_cardOps.displayTopCard(m_deck.m_dropDeck.top());
     m_gameOps.AIplay(m_players.at(m_gameOps.getCurrentPlayer()), m_deck);
+    std::cout<<"\n";
 }
 
