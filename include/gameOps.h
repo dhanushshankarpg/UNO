@@ -20,7 +20,7 @@ public:
     int getCurrentPlayer();
     void pickCardHumanOrCPU(Player&, Deck&);
     void dropCardHuman(Player&, Deck&);
-    void dropCardCPU(Card&, Deck&);
+    void dropCardCPU(Player&, Card&, Deck&);
     void AIplay(Player&, Deck &);
     void setGameCycle(Deck &);
     void clampPlayerIndex();

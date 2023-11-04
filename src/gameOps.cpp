@@ -6,39 +6,6 @@ bool GameOperations::s_isCycleReversed = false;
 
 GameOperations::GameOperations() = default;
 
-void GameOperations::pickCardHumanOrCPU(Player& currentPlayer, Deck& deck)
-{
-    Card* card = nullptr;
-    currentPlayer.m_playerHandCards.push_back(deck.m_overallDeck.back());
-    deck.m_overallDeck.erase( deck.m_overallDeck.cend());
-    card = checkEquivalentCard(currentPlayer, deck);
-    if(checkEquivalentCard(currentPlayer, deck) == nullptr)
-    {
-        dropCardCPU(*card, deck);
-    }
-    else
-    {
-        std::cout<<"Card Picked by : "<<currentPlayer.m_playerName<<std::endl;
-    }
-    // #Todo: check for drop due to color/rank clash with top card
-}
-
-void GameOperations::dropCardHuman(Player& currentPlayer, Deck& deck)
-{
-    int index;
-    std::cout<<"Enter the Card to Drop"<<std::endl;
-    std::cin >> index;
-
-    deck.m_dropDeck.push(currentPlayer.m_playerHandCards.at(index));
-    currentPlayer.m_playerHandCards.erase(currentPlayer.m_playerHandCards.begin() + index);
-    std::cout<<"Card Dropped by : "<<currentPlayer.m_playerName<<std::endl;
-}
-
-void GameOperations::dropCardCPU(Card& card, Deck& deck)
-{
-    deck.m_dropDeck.push(card);
-}
-
 Card * GameOperations::checkEquivalentCard(Player& currentPlayer, Deck& deck)
 {
     Card* equiCard = nullptr;
@@ -54,6 +21,42 @@ Card * GameOperations::checkEquivalentCard(Player& currentPlayer, Deck& deck)
 
 }
 
+void GameOperations::pickCardHumanOrCPU(Player& currentPlayer, Deck& deck)
+{
+    Card* card = nullptr;
+    currentPlayer.m_playerHandCards.push_back(deck.m_overallDeck.back());
+    deck.m_overallDeck.erase( deck.m_overallDeck.cend());
+    card = checkEquivalentCard(currentPlayer, deck);
+    if(card != nullptr)
+    {
+        dropCardCPU(currentPlayer, *card,deck);
+        std::cout<<"Equivalent Card Dropped"<<std::endl;
+    }
+    else
+    {
+        std::cout<<"Card Picked by : "<<currentPlayer.m_playerName<<std::endl;
+    }
+
+
+}
+
+void GameOperations::dropCardHuman(Player& currentPlayer, Deck& deck)
+{
+    int index;
+    std::cout<<"Enter the Card to Drop"<<std::endl;
+    std::cin >> index;
+
+    deck.m_dropDeck.push(currentPlayer.m_playerHandCards.at(index));
+    currentPlayer.m_playerHandCards.erase(currentPlayer.m_playerHandCards.begin() + index);
+    std::cout<<"Card Dropped by : "<<currentPlayer.m_playerName<<std::endl;
+}
+
+void GameOperations::dropCardCPU(Player& currentPlayer, Card& card, Deck& deck)
+{
+    deck.m_dropDeck.push(card);
+    currentPlayer.m_playerHandCards.pop_back();
+}
+
 void GameOperations::AIplay(Player& currentPlayer, Deck& deck)
 {
     Card* card = nullptr;
@@ -64,7 +67,8 @@ void GameOperations::AIplay(Player& currentPlayer, Deck& deck)
     }
     else
     {
-        dropCardCPU(*card,deck);
+        dropCardCPU(currentPlayer,*card,deck);
+        std::cout<<"Card Dropped by : "<<currentPlayer.m_playerName<<std::endl;
     }
     std::this_thread::sleep_for(std::chrono::seconds(1));
 }
