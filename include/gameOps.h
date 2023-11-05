@@ -3,12 +3,14 @@
 #include <iostream>
 #include <stack>
 #include <vector>
+#include <algorithm>
 
 #include "Deck.h"
 #include "player.h"
+#include "cardOps.h"
 #include "../src/utils/UNOStructs.h"
 
-class GameOperations
+class GameOperations : public CardOperation
 {
 public:
     static bool s_isCycleReversed;
@@ -17,9 +19,10 @@ public:
 public:
     GameOperations();
     int getCurrentPlayer();
-    void pickCardHuman(std::vector<Player>&, Deck&);
-    void dropCardHuman(std::vector<Player>&, Deck&);
-    void AIplay(Deck &);
+    void pickCardHumanOrCPU(Player&, Deck&);
+    void dropCardHuman(Player&, Deck&);
+    void dropCardCPU(Player&, Card&, Deck&);
+    void AIplay(Player&, Deck &);
     void setGameCycle(Deck &);
-    void clamPlayerIndex();
+    void clampPlayerIndex();
 };

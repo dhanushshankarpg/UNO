@@ -36,7 +36,7 @@ void Deck::dealCards(std::vector<Card> &deckofCards)
         }
         m_dealtStack.push_back(hand);
     }
-
+    //sets the top card Initially
     m_dropDeck.push(deckofCards.front());
 }
 
