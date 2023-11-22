@@ -12,7 +12,7 @@ void GameOperations::pickCardHumanOrCPU(Player& currentPlayer, Deck& deck)
     deck.m_overallDeck.erase( deck.m_overallDeck.cend());
     std::cout<<currentPlayer.m_playerName<<" Picks...\t"; // for debugging purpose strictly dont display this info
     displayCard(currentPlayer.m_playerHandCards.back());
-    checkEquivalentCard(currentPlayer.m_playerHandCards.back(), deck.m_dropDeck);
+    checkEquivalentCard(currentPlayer.m_playerHandCards.back(), deck.m_dropDeck); // Bro wtf is this
     if(checkEquivalentCard(currentPlayer.m_playerHandCards.back(), deck.m_dropDeck))
     {
         dropCardCPU(currentPlayer, currentPlayer.m_playerHandCards.back(),deck);
@@ -27,6 +27,8 @@ void GameOperations::dropCardHuman(Player& currentPlayer, Deck& deck)
     std::cin >> index;
 
     deck.m_dropDeck.push(currentPlayer.m_playerHandCards.at(index));
+
+    deck.m_dropDeck.top().isAlive = true; // making top card active
     std::cout<<currentPlayer.m_playerName<<" Drops...\t";
     displayCard(currentPlayer.m_playerHandCards.at(index));
     currentPlayer.m_playerHandCards.erase(currentPlayer.m_playerHandCards.begin() + index);
@@ -35,6 +37,7 @@ void GameOperations::dropCardHuman(Player& currentPlayer, Deck& deck)
 void GameOperations::dropCardCPU(Player& currentPlayer, Card& card, Deck& deck)
 {
     deck.m_dropDeck.push(card);
+    deck.m_dropDeck.top().isAlive = true;
     std::cout<<currentPlayer.m_playerName<<" Drops...\t";
     displayCard(card);
     currentPlayer.m_playerHandCards.pop_back();
@@ -62,31 +65,38 @@ void GameOperations::clampPlayerIndex()
 
 void GameOperations::setGameCycle(Deck& deck)
 {
-//    std::cout<<"The Rank of TOP CARD"<<deck.m_dropDeck.top().rank<<std::endl;
-    if (deck.m_dropDeck.top().rank == 10)
+//    std::cout<<"Print from GameOps"<<std::endl;displayTopCard(deck.m_dropDeck.top());
+    if (deck.m_dropDeck.top().rank == 10 && deck.m_dropDeck.top().isAlive)
     {
         // Rank 10 = REVERSE
         s_isCycleReversed = !s_isCycleReversed;
         std::cout<<"Cycle Reversed"<<std::endl;
-        s_currentPlayerIndex = s_isCycleReversed ? (s_currentPlayerIndex - 1) : (s_currentPlayerIndex + 1);
-        if (s_currentPlayerIndex > (Helpers::s_totalPlayerCount-1) || s_currentPlayerIndex < 0) clampPlayerIndex();
+        deck.m_dropDeck.top().isAlive = false;
+        setPlayerIndex( 1);
     }
-    else if (deck.m_dropDeck.top().rank == 11)
+    else if (deck.m_dropDeck.top().rank == 11 && deck.m_dropDeck.top().isAlive)
     {
         // Rank 11 = SKIP
-        std::cout<<"Skip Player - "<<s_currentPlayerIndex<<std::endl;
-        s_currentPlayerIndex = (s_isCycleReversed ? (s_currentPlayerIndex - 2) : (s_currentPlayerIndex + 2));
-        if (s_currentPlayerIndex > (Helpers::s_totalPlayerCount-1) || s_currentPlayerIndex < 0) clampPlayerIndex();
+        std::cout<<"Skipping Next Player "<<std::endl;
+        std::cout<<"------------------------------------------------"<<std::endl;
+        deck.m_dropDeck.top().isAlive = false;
+        setPlayerIndex( 2);
     }
     else
     {
         // Normal Case just Move over players
-        s_currentPlayerIndex = s_isCycleReversed ? (s_currentPlayerIndex - 1) : (s_currentPlayerIndex + 1);
-        if (s_currentPlayerIndex > (Helpers::s_totalPlayerCount-1) || s_currentPlayerIndex < 0) clampPlayerIndex();
+        setPlayerIndex(1);
     }
+}
+
+void GameOperations::setPlayerIndex(int offsetPlayerIndex)
+{
+    s_currentPlayerIndex = (s_isCycleReversed ? (s_currentPlayerIndex - offsetPlayerIndex) : (s_currentPlayerIndex + offsetPlayerIndex));
+    if (s_currentPlayerIndex > (Helpers::s_totalPlayerCount-1) || s_currentPlayerIndex < 0) clampPlayerIndex();
 }
 
 int GameOperations::getCurrentPlayer()
 {
     return s_currentPlayerIndex;
 }
+

@@ -1,5 +1,9 @@
 #include "../include/cardOps.h"
 
+std::string colors[] = {"","RED", "GREEN", "BLUE", "YELLOW"};
+std::string rank[] = {    "","ONE","TWO","THREE","FOUR","FIVE","SIX","SEVEN",
+                          "EIGHT","NINE","REVERSE","SKIP", "DRAW2",};
+
 CardOperation::CardOperation() = default;
 
 void CardOperation::setInitialTopCard()
@@ -46,23 +50,23 @@ void CardOperation::displayDeck(const std::vector<Card> & deck)
     }
 }
 
+
 void CardOperation::displayCard(const Card & card)
 {
-    std::string colors[] = {"","RED", "GREEN", "BLUE", "YELLOW"};
-    std::string rank[] = {    "","ONE","TWO","THREE","FOUR","FIVE","SIX","SEVEN",
-                              "EIGHT","NINE","REVERSE","SKIP", "DRAW2",};
     std::cout << "Color: " << colors[card.color] << "\t"
               << "Rank: " << rank[card.rank]<< std::endl;
 }
 
 void CardOperation::displayTopCard(const Card & card)
 {
+    auto cardValidity = [](bool lifetime)
+    {
+        return lifetime ? "is Alive" : "Not Alive";
+    };
     std::cout << "TOP CARD::";
-    std::string colors[] = {"","RED", "GREEN", "BLUE", "YELLOW"};
-    std::string rank[] = {    "","ONE","TWO","THREE","FOUR","FIVE","SIX","SEVEN",
-                              "EIGHT","NINE","REVERSE","SKIP", "DRAW2",};
     std::cout << "Color: " << colors[card.color] << "\t"
-              << "Rank: " << rank[card.rank]<< std::endl;
+              << "Rank: " << rank[card.rank] << "\t"
+              << "Validity: "<< cardValidity(card.isAlive) << std::endl;
 }
 
 bool CardOperation::checkEquivalentCard(Card& checkCard , std::stack<Card>& dropDeck)

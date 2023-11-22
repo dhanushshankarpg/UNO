@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include <optional>
 
 #include "../src/utils/UNOStructs.h"
 #include "helpers.h"
