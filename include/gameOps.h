@@ -23,6 +23,8 @@ public:
     void dropCardHuman(Player&, Deck&);
     void dropCardCPU(Player&, Card&, Deck&);
     void AIplay(Player&, Deck &);
-    void setGameCycle(Deck &);
+    void setPlayerIndex(int);
     void clampPlayerIndex();
+    void setGameCycle(Deck&);
+
 };

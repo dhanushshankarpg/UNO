@@ -3,6 +3,7 @@
 Game::Game()
 {
     m_isGameOver = false;
+    m_topCard = {};
     m_deck.initializeDeck();
     m_deck.shuffleDeck(m_deck.m_overallDeck);
     m_deck.dealCards(m_deck.m_overallDeck);
@@ -16,6 +17,9 @@ void Game::initGame()
     {
         startGame();
         m_gameOps.setGameCycle(m_deck);
+
+//        m_deck.m_dropDeck.top().isAlive = false; // Killing the Top Card
+
     }
 }
 
@@ -59,6 +63,7 @@ void Game::startGame()
 void Game::staticDisplayForHumanPlayer()
 {
     //Helpers::clearScreen();
+    std::this_thread::sleep_for(std::chrono::seconds(3));
     std::cout<<"Your Turn"<<std::endl;
     m_cardOps.displayTopCard(m_deck.m_dropDeck.top());
     m_cardOps.displayDeck(m_players.at(m_gameOps.getCurrentPlayer()).m_playerHandCards);
