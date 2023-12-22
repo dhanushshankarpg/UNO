@@ -7,7 +7,7 @@
 #include <random>
 #include <unordered_map>
 
-#include "../src/utils/UNOStructs.h"
+#include "../../utils/UNOStructs.h"
 #include "helpers.h"
 
 class Deck

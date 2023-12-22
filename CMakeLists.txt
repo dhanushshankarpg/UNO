@@ -6,21 +6,8 @@ project(UNO++ VERSION 0.1.0)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED true)
 
+add_subdirectory(src/operations)
+add_subdirectory(src/game)
 
-file(GLOB SOURCES "src/*.cpp")
-
-file(GLOB HEADERS "include/*.h"
-                  "src/utils/*.h")
-
-set(UNOSOURCES
-    src/Deck.cpp
-    src/game.cpp
-    src/helpers.cpp
-    src/player.cpp
-    src/main.cpp
-    src/cardOps.cpp
-    src/gameOps.cpp
-)
-# add_compile_options()
-
-add_executable(UNO++ ${UNOSOURCES})
+add_executable(UNO++ src/main.cpp)
+target_link_libraries(UNO++ PUBLIC  UNO_Works UNO_Operations )

@@ -1,4 +1,4 @@
-#include "../include/cardOps.h"
+#include "include/cardOps.h"
 
 std::string colors[] = {"","RED", "GREEN", "BLUE", "YELLOW"};
 std::string rank[] = {    "","ONE","TWO","THREE","FOUR","FIVE","SIX","SEVEN",

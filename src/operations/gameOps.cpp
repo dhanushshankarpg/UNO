@@ -1,5 +1,5 @@
 
-#include "../include/gameOps.h"
+#include "include/gameOps.h"
 
 int GameOperations::s_currentPlayerIndex = 0;
 bool GameOperations::s_isCycleReversed = false;

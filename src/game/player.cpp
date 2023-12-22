@@ -1,4 +1,4 @@
-#include "../include/player.h"
+#include "include/player.h"
 
 int Player::s_playerIndex = 0;
 
