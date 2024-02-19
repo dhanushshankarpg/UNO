@@ -1,10 +1,12 @@
 if (UNIX)
     cmake_minimum_required(VERSION 3.22.1)
 endif (UNIX)
-if(WIN32)
+if (WIN32)
     cmake_minimum_required(VERSION  3.25.0-rc4)
 endif (WIN32)
+
 project(UNO++ VERSION 0.1.0)
+
 # Set the C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED true)

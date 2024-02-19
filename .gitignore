@@ -59,3 +59,4 @@ bin/
 Debug-Build
 .idea
 cmake-build-debug-remote/
+cmake/
