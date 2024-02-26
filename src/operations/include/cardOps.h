@@ -4,9 +4,9 @@
 #include <vector>
 #include <optional>
 
-#include "../src/utils/UNOStructs.h"
-#include "helpers.h"
-#include "player.h"
+#include "../../utils/UNOStructs.h"
+#include "../../game/include/helpers.h"
+#include "../../game/include/player.h"
 
 class CardOperation
 {

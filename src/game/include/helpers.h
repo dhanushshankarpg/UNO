@@ -5,7 +5,7 @@
 #include <chrono>
 #include <thread>
 
-#include "../src/utils/UNOStructs.h"
+#include "../../utils/UNOStructs.h"
 
 class Helpers
 {

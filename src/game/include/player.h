@@ -5,7 +5,7 @@
 #include <memory>
 
 #include "Deck.h"
-#include "../src/utils/UNOStructs.h"
+#include "../../utils/UNOStructs.h"
 
 class Player
 {

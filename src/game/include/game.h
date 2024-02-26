@@ -8,8 +8,8 @@
 #include "Deck.h"
 #include "helpers.h"
 #include "player.h"
-#include "cardOps.h"
-#include "gameOps.h"
+#include "../../operations/include/cardOps.h"
+#include "../../operations/include/gameOps.h"
 
 class Game {
 

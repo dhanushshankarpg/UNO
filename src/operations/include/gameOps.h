@@ -5,10 +5,10 @@
 #include <vector>
 #include <algorithm>
 
-#include "Deck.h"
-#include "player.h"
+#include "../../game/include/Deck.h"
+#include "../../game/include/player.h"
 #include "cardOps.h"
-#include "../src/utils/UNOStructs.h"
+#include "../../utils/UNOStructs.h"
 
 class GameOperations : public CardOperation
 {

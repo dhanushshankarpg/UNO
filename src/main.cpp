@@ -1,5 +1,5 @@
-#include "../include/deck.h"
-#include "../include/game.h"
+#include "Deck.h"
+#include "game.h"
 
 
 int main(int, char **)
