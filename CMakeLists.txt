@@ -7,12 +7,27 @@ endif (WIN32)
 
 project(UNO++ VERSION 0.1.0)
 
+
+
 # Set the C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED true)
+
+#find dependencies
+set(FIND_CONAN_DEPENDENCIES "/conan/Win-Debug/build/Debug/generators/")
+
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}${FIND_CONAN_DEPENDENCIES})
+set(CMAKE_PREFIX_PATH  ${CMAKE_PREFIX_PATH} ${CMAKE_SOURCE_DIR}${FIND_CONAN_DEPENDENCIES})
+
+find_package(fmt REQUIRED)
+if(fmt_FOUND)
+    message("FMT FOUND")
+endif ()
 
 add_subdirectory(src/operations)
 add_subdirectory(src/game)
 
 add_executable(${PROJECT_NAME} src/main.cpp)
-target_link_libraries(${PROJECT_NAME} PUBLIC  UNO_Works UNO_Operations )
+target_link_libraries(${PROJECT_NAME} PUBLIC    UNO_Works
+                                                UNO_Operations
+                                                fmt::fmt)

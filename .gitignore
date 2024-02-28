@@ -60,3 +60,5 @@ Debug-Build
 .idea
 cmake-build-debug-remote/
 cmake/
+.venv/
+conan/
