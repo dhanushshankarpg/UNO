@@ -23,6 +23,10 @@ find_package(fmt REQUIRED)
 if(fmt_FOUND)
     message("FMT FOUND")
 endif ()
+find_package(spdlog REQUIRED)
+if(spdlog_FOUND)
+    message("SPDLOG FOUND")
+endif ()
 
 add_subdirectory(src/operations)
 add_subdirectory(src/game)
@@ -30,4 +34,5 @@ add_subdirectory(src/game)
 add_executable(${PROJECT_NAME} src/main.cpp)
 target_link_libraries(${PROJECT_NAME} PUBLIC    UNO_Works
                                                 UNO_Operations
-                                                fmt::fmt)
+                                                fmt::fmt
+                                                spdlog::spdlog)

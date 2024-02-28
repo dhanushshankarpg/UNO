@@ -8,6 +8,7 @@ class ExampleRecipe(ConanFile):
 
     def requirements(self):
         self.requires("fmt/10.2.1")
+        self.requires("spdlog/1.13.0")
 
     def layout(self):
         cmake_layout(self)

@@ -9,5 +9,6 @@ int main(int, char **)
 
     Game game;
     game.initGame();
+
     return EXIT_SUCCESS;
 }
