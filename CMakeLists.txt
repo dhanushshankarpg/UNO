@@ -7,14 +7,16 @@ endif (WIN32)
 
 project(UNO++ VERSION 0.1.0)
 
-
-
 # Set the C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED true)
 
-#find dependencies
-set(FIND_CONAN_DEPENDENCIES "/conan/Win-Debug/build/Debug/generators/")
+if (UNIX)
+    set(FIND_CONAN_DEPENDENCIES "/conan/Linux-Debug/build/Debug/generators/")
+endif (UNIX)
+if (WIN32)
+    set(FIND_CONAN_DEPENDENCIES "/conan/Win-Debug/build/Debug/generators/")
+endif (WIN32)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}${FIND_CONAN_DEPENDENCIES})
 set(CMAKE_PREFIX_PATH  ${CMAKE_PREFIX_PATH} ${CMAKE_SOURCE_DIR}${FIND_CONAN_DEPENDENCIES})
