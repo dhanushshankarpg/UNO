@@ -19,12 +19,11 @@ public:
 public:
     GameOperations();
     int getCurrentPlayer();
-    void pickCardHumanOrCPU(Player&, Deck&);
-    void dropCardHuman(Player&, Deck&);
-    void dropCardCPU(Player&, Card&, Deck&);
-    void AIplay(Player&, Deck &);
+    void pickCardHumanOrCPU(Player &, Deck &);
+    void dropCardHuman(Player &, Deck &);
+    void dropCardCPU(Player &, Card &, Deck &);
+    void AIplay(Player &, Deck &);
     void setPlayerIndex(int);
     void clampPlayerIndex();
-    void setGameCycle(Deck&);
-
+    void setGameCycle(Deck &);
 };
