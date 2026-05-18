@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: dhanushshankar/personal_projects:latest
+      image: dhanushshankar/cpp:latest
 
     steps:
       - name: Checkout code
