@@ -1,0 +1,25 @@
+name: C++ CI (Docker Build Environment)
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    container:
+      image: dhanushshankar/personal_projects:latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure project
+        run: |
+          cmake -S . -B build
+
+      - name: Build project
+        run: |
+          cmake --build build
