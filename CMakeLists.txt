@@ -1,13 +1,11 @@
-cmake_minimum_required(VERSION 4.1.0)
-# Set the C++ standard
-# set(CMAKE_CXX_STANDARD 17)
-# set(CMAKE_CXX_STANDARD_REQUIRED true)
+cmake_minimum_required(VERSION 3.22)
+project(UNO LANGUAGES CXX)
 
-project(UNO)
+add_subdirectory(libs/spdlog)
+add_subdirectory(libs/SFML)
 
-add_subdirectory(src/operations)
-add_subdirectory(src/game)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 add_executable(${PROJECT_NAME} src/main.cpp)
-target_link_libraries(${PROJECT_NAME} PUBLIC    UNO_Works
-                                                UNO_Operations)
+
+target_link_libraries( ${PROJECT_NAME} PRIVATE SFML::Graphics spdlog::spdlog)

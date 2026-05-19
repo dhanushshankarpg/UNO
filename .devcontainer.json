@@ -1,0 +1,27 @@
+{
+    "name": "ubuntu-cpp-dev",
+    "build": {
+        "dockerfile": "docker/Dockerfile"
+    },
+    "remoteUser": "ubuntu",
+    "workspaceFolder": "/home/ubuntu/dev",
+    "mounts": [
+        "source=${localWorkspaceFolder},target=/home/ubuntu/dev,type=bind"
+    ],
+    "runArgs": [
+        "--add-host=host.docker.internal:host-gateway"
+    ],
+    "remoteEnv": {
+        "DISPLAY": "host.docker.internal:0.0",
+        "LIBGL_ALWAYS_INDIRECT": "1"
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools",
+                "ms-vscode.cmake-tools",
+                "ms-vscode.cpptools-extension-pack"
+            ]
+        }
+    }
+}
